@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavComponent } from './components/nav/nav.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'todo_list_angular_material';
+  title = 'TODO List with Angular Material';
 }

@@ -2,26 +2,17 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
 
-## Development server
+This is a TODO List Project using Angular Material (navigation, tables, etc). It's a simple project, just for fun and learning more about the Material library. The first commit is a basic and functional TODO list, in the sequence it will receive CDK usage, database access implementation, etc.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+### Tip One: Generate a navigation with Angular Material
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run the command: 
 
-## Build
+```
+ng generate @angular/material:navigation nav
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Tip Two: Try to use table from Angular Material and don't have automatic updates
+The likely problem in your code is that you are trying to update the table directly by manipulating the dataSource array, but Angular Material's mat-table component does not update automatically when the data array is modified. You need to notify the table about the changes in order for it to update the display properly.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
