@@ -1,26 +1,78 @@
 .demo-table {
-    width: 100%;
-  }
-  
-  .mat-column-demo-position {
-    width: 32px;
-    border-right: 1px solid currentColor;
-    padding-right: 24px;
-    text-align: center;
-  }
-  
-  .mat-column-demo-name {
-    padding-left: 16px;
-    font-size: 20px;
-  }
-  
-  .mat-column-demo-weight {
-    font-style: italic;
-  }
-  
-  .mat-column-demo-symbol {
-    width: 32px;
-    text-align: center;
-    font-weight: bold;
-  }
-  
+  width: 100%;
+}
+
+.mat-column-Position {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+
+.mat-column-Task {
+  padding-left: 16px;
+  font-size: 20px;
+}
+
+.mat-column-Remove {
+  width: 32px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.example-list {
+  width: 500px;
+  max-width: 100%;
+  border: solid 1px #ccc;
+  display: block;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.example-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Estilos aplicados quando o elemento está sendo arrastado */
+/*.mat-column-Task.cdk-drag {
+  border: 2px solid red;
+}*/
+.mat-column-Task.cdk-drag-preview {
+  opacity: 0.5;
+  transition: opacity 250ms;
+}
+table.demo-table td.mat-column-Task.cdk-drag-placeholder {
+  /*opacity: 0.6;*/
+  transition: opacity 250ms;
+  background: red;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transform: translateY(0);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-list.cdk-drop-list-dragging .example-box.cdk-drag-placeholder {
+  visibility: hidden;
+  background: #ccc;
+}
+
+.example-custom-placeholder {
+  background: #ccc;
+  border: dotted 3px #999;
+  min-height: 60px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+

@@ -1,34 +1,49 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
-    <!-- Position Column -->
+<table mat-table [dataSource]="dataSource.data" class="mat-elevation-z8 demo-table" cdkDropList (cdkDropListDropped)="drop($event)">
     <ng-container matColumnDef="Position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container> 
-  
-    <!-- Task Column -->
+      <th mat-header-cell *matHeaderCellDef class="mat-column-Position">No.</th>
+      <td mat-cell *matCellDef="let element" class="mat-column-Position" cdkDrag>{{ element.position }}</td>
+    </ng-container>
     <ng-container matColumnDef="Task">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.textTasks}} </td>
+      <th mat-header-cell *matHeaderCellDef class="mat-column-Task">Name</th>
+      <!--
+        <td mat-cell *matCellDef="let element" class="mat-column-Task" (click)="editTask()" cdkDrag>{{ element.textTasks }}</td>
+      -->
+      <td mat-cell *matCellDef="let element; let i = index" class="mat-column-Task" (click)="editTask(i)" cdkDrag>
+        <ng-container *ngIf="selectedIndex !== i; else editField">
+          {{element.textTasks}}
+        </ng-container>
+        <ng-template #editField>
+          <input type="text" [(ngModel)]="element.textTasks" (keydown.enter)="updateTask(element.textTasks, i)" (blur)="updateTask(element.textTasks, i)">
+        </ng-template>
+      </td>
+    
+    
+    </ng-container>
+    <ng-container matColumnDef="Remove">
+      <th mat-header-cell *matHeaderCellDef class="mat-column-Remove">Remove</th>
+      <td mat-cell *matCellDef="let element" class="mat-column-Remove">
+        <button (click)="removeTask(element.position)">Remove Task</button>
+      </td>
     </ng-container>
   
-  <!-- Remove Column -->
-  <ng-container matColumnDef="Remove">
-    <th mat-header-cell *matHeaderCellDef> Remove </th>
-    <td mat-cell *matCellDef="let element"> <button (click)="removeTask(element.position - 1)">Remove Task</button> </td>
-  </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
   
   <br />
+  <!--
   <br />
-
+  <ul>
+    <li *ngFor="let item of list">
+      {{item}}  
+    </li>    
+  </ul>
+  <br />
+  -->
+  <br />
   {{tasks}}
-
   <br />
-
-  <!-- two-way bind using [(ngModel)]  -->
-  <input type="text" [(ngModel)]="tasks"> 
+  <br /> 
+  <input type="text" [(ngModel)]="tasks" />
   <button (click)="addTask()">Add Task</button>
   
